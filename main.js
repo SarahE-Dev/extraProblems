@@ -173,17 +173,22 @@ function isValidPassword(str) {
 
 function onlyPunchy(arr) {
   let newArr = [];
+  let newArr2 = [];
   for(let i=0; i < arr.length; i++){
-      let exclaim = arr[i].indexOf('!') !== -1
-    if(arr[i].length < 15 && exclaim === true){
-      newArr[i] = (arr[i].substring(0, '!') + '!');
-    }else if(arr[i].length < 15 && exclaim === false){
-      newArr[i] = arr[i] + '!';
+    if(arr[i].length < 15){
+      newArr.push(arr[i])
     }
-  }
-  return newArr
-
+  for(let i=0; i < newArr.length; i++)
+      for(let j=0; j < newArr[j].length; i++){
+        if(newArr[j] === '!'){
+          continue
+        }else{
+          newArr2.push(newArr[j] + '!')
+        }
+      }
   
+}
+return newArr2
 }
 
 
