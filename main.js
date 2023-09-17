@@ -172,23 +172,40 @@ function isValidPassword(str) {
 }
 
 function onlyPunchy(arr) {
-  let newArr = [];
-  let newArr2 = [];
-  for(let i=0; i < arr.length; i++){
-    if(arr[i].length < 15){
-      newArr.push(arr[i])
-    }
-  for(let i=0; i < newArr.length; i++)
-      for(let j=0; j < newArr[j].length; i++){
-        if(newArr[j] === '!'){
-          continue
-        }else{
-          newArr2.push(newArr[j] + '!')
+//   let newArr = [];
+//   let newArr2 = [];
+//   for(let i=0; i < arr.length; i++){
+//     if(arr[i].length < 15){
+//       newArr.push(arr[i])
+//     }
+//   for(let i=0; i < newArr.length; i++)
+//       for(let j=0; j < newArr[j].length; i++){
+//         if(newArr[j] === '!'){
+//           continue
+//         }else{
+//           newArr2.push(newArr[j] + '!')
+//         }
+//       }
+  
+// }
+//     return newArr2;
+    let newArr = [];
+    let newArr2 = []
+    for(let i=0; i < arr.length; i++){
+      newArr.push('');
+      for(let j=0; j < arr[i].length; j++){
+        if(arr[i][j] !== '!'){
+         newArr[i] += arr[i][j]
         }
       }
-  
-}
-return newArr2
+    }
+    for(let i=0; i < newArr.length; i++){
+      if(newArr[i].length < 15){
+        newArr2.push(newArr[i] + '!')
+      }
+    }
+    return newArr2;
+
 }
 
 
