@@ -30,17 +30,14 @@ function exclaim(str) {
   }
 
 
-
-function countWords(str) {
-  let newStr = ''
-  let spaces = ' '
-  for(let i=0; i < str.length; i++){
-    let hasSpaces = spaces.indexOf(str[i]) !== -1
-    if(hasSpaces === true){
-      newStr += str[i]
+function countWords(str){
+  let spaces = 0;
+  for(let char of str){
+    if(char === ' '){
+      spaces += 1;
     }
   }
-  return newStr.length+1;
+  return spaces + 1;
 }
 
 function containsDigit(str) {
@@ -49,51 +46,49 @@ function containsDigit(str) {
 }
 
 function containsLowerCase(str) {
-  let newStr = ''
+  let numberOfLowercase = 0;
   let lowercase = 'abcdefghijklmnopqrstuvwxyz'
   for(let i=0; i < str.length; i++){
     let islowercase = lowercase.indexOf(str[i]) !== -1
     if(islowercase === true){
-      newStr += str[i]
+      numberOfLowercase += 1;
     }
   }
-  return newStr.length > 0
+  return numberOfLowercase > 0;
 }
     
 function containsUpperCase(str) {
-  let newStr = '';
+  let numberOfUppercase = 0;
   let uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   for(let i=0; i < str.length; i++){
     let isuppercase = uppercase.indexOf(str[i]) !== -1
     if(isuppercase === true){
-      newStr += str[i]
+      numberOfUppercase += 1;
     }
   }
-  return newStr.length > 0
+  return numberOfUppercase > 0;
 }
 
 function containsNonAlphanumeric(str) {
-  let newStr = '';
+  let numberOfNonalpha = 0;
   let nonalphanumeric = "() @?!' '";
   for(let i=0; i < str.length; i++){
     let isnonalphanumeric = nonalphanumeric.indexOf(str[i]) !== -1
     if(isnonalphanumeric === true){
-      newStr += str[i]
+      numberOfNonalpha += 1;
     }
   }
-  return newStr.length > 0
+  return numberOfNonalpha > 0
 }
 
 function containsSpace(str) {
-  let newStr = ''
-  let spaces = ' '
-  for(let i=0; i < str.length; i++){
-    let hasSpaces = spaces.indexOf(str[i]) !== -1
-    if(hasSpaces === true){
-      newStr += str[i]
+  let hasSpaces = 0
+  for(let char of str){
+    if(char === ' '){
+      hasSpaces += 1
     }
   }
-  return newStr.length > 0;
+  return hasSpaces > 0;
 }
 
 function digits(num) {
@@ -130,11 +125,11 @@ function truncate(str) {
 }
 
 function isValidPassword(str) {
-  let str1 = '';
-  let str2 = '';
-  let str3 = '';
-  let str4 = '';
-  let str5 = '';
+  let lowercaseCount = 0;
+  let uppercaseCount = 0;
+  let digitsCount = 0;
+  let nonalphaCount = 0;
+  let spaceCount = 0;
   let lowercase = 'abcdefghijklmnopqrstuvwxyz';
   let uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let digits = '01234567890';
@@ -143,28 +138,27 @@ function isValidPassword(str) {
   for(let i=0; i < str.length; i++){
     let haslower = lowercase.indexOf(str[i]) !== -1
     if(haslower === true){
-      str1 += str[i]
+      lowercaseCount += 1;
     }
     let hasupper = uppercase.indexOf(str[i]) !== -1
     if(hasupper === true){
-      str2 += str[i]
+      uppercaseCount += 1;
     }
     let hasdigits = digits.indexOf(str[i]) !== -1
     if(hasdigits === true){
-      str3 += str[i]
+      digitsCount += 1;
     }
     let isnonalphanumeric = nonalphanumeric.indexOf(str[i]) !== -1
     if(isnonalphanumeric === true){
-      str4 += str[i]
+      nonalphaCount += 1;
     }
-    let hasspaces = space.indexOf(str[i]) !== -1
-    if(hasspaces === true){
-      str5 += str[i]
+    if(str[i] === ' '){
+      spaceCount += 1;
     }
   }
-  if(str5.length > 0){
+  if(spaceCount > 0){
     return false
-  }else if(str1.length > 0 && str2.length > 0 && str3.length > 0 && str4.length > 0){
+  }else if(uppercaseCount > 0 && lowercaseCount > 0 && digitsCount > 0 && nonalphaCount > 0){
     return true
   }else{
     return false
@@ -172,39 +166,22 @@ function isValidPassword(str) {
 }
 
 function onlyPunchy(arr) {
-//   let newArr = [];
-//   let newArr2 = [];
-//   for(let i=0; i < arr.length; i++){
-//     if(arr[i].length < 15){
-//       newArr.push(arr[i])
-//     }
-//   for(let i=0; i < newArr.length; i++)
-//       for(let j=0; j < newArr[j].length; i++){
-//         if(newArr[j] === '!'){
-//           continue
-//         }else{
-//           newArr2.push(newArr[j] + '!')
-//         }
-//       }
-  
-// }
-//     return newArr2;
-    let newArr = [];
-    let newArr2 = []
+    let titles = [];
+    let titlesWithExclamations = []
     for(let i=0; i < arr.length; i++){
-      newArr.push('');
+      titles.push('');
       for(let j=0; j < arr[i].length; j++){
         if(arr[i][j] !== '!'){
-         newArr[i] += arr[i][j]
+         titles[i] += arr[i][j]
         }
       }
     }
-    for(let i=0; i < newArr.length; i++){
-      if(newArr[i].length < 15){
-        newArr2.push(newArr[i] + '!')
+    for(let i=0; i < titles.length; i++){
+      if(titles[i].length < 15){
+        titlesWithExclamations.push(titles[i] + '!')
       }
     }
-    return newArr2;
+    return titlesWithExclamations;
 
 }
 
