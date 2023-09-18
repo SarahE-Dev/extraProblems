@@ -39,10 +39,18 @@ function countWords(str){
   }
   return spaces + 1;
 }
-
-function containsDigit(str) {
-  return str.includes('0') || str.includes('1') || str.includes('2') || str.includes('3') || str.includes('4') || str.includes('5') || str.includes('6') || str.includes('7') || str.includes('8') || str.includes('9')
   
+// }
+function containsDigit(str){
+  let numberOfDigits = 0;
+  let digits = '0123456789';
+  for(let char of str){
+    let hasDigits = digits.indexOf(char) !== -1
+    if(hasDigits === true){
+      numberOfDigits += 1;
+    }
+  }
+  return numberOfDigits > 0;
 }
 
 function containsLowerCase(str) {
