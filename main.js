@@ -111,12 +111,11 @@ function digits(num) {
     if(numArr[i] === '.'){
       continue;
     }else{
-      lastArr += numArr[i]
+      lastArr.push(+numArr[i])
     }
   }
-  let numbers = lastArr.split('')
-  let answer = numbers.map(Number)
-  return answer;
+  
+  return lastArr;
 }
 
 function truncate(str) {
